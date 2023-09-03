@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { Statistics } from './Statistics/Statistics';
-import { FeedbackOptions } from './Feedback/Feedback';
+import { FeedbackOption } from './Feedback/Feedback';
 import { Section } from './Section/Section';
+import {Notification} from './Notification'
 
 export class App extends Component {
   state = {
@@ -29,25 +30,23 @@ export class App extends Component {
   };
 
   render() {
-    // function onClick(options) {
-    //   console.log('dvdv');
-    //   this.setState(prevState => ({
-    //     [options.name]: prevState[options.name] + 1,
-    //   }));
-    // }
-
     return (
-      <div>
+      <div style={{padding: '10px 50px'}}>
        <Section title={"Please leave feedback"}>
+        <div style={{display: 'flex', gap: '10px'}}>
         {this.options.map(option => (
-          <FeedbackOptions
+          <FeedbackOption
             key={option.key}
             option={option}
             onLeaveFeedback={this.handleGoodIncrement}
           />
         ))}
+      </div>
 
-        {<Statistics
+
+{
+(this.countTotalFeedback() === 0)? <Notification message="There is no feedback"/> :
+        <Statistics
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
