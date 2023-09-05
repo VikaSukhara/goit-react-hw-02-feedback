@@ -4,9 +4,7 @@ export const FeedbackOption = ({ option, onLeaveFeedback }) => {
     <div>
         <Button name={option.name} 
         onClick={() => onLeaveFeedback(option)} 
-        type="button">
-          {option.name}
-        </Button>
+        type="button"> {option.name} </Button>
     </div>
   );
 };
